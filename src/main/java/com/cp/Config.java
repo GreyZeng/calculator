@@ -135,14 +135,14 @@ public class Config {
 
     @Override
     public String toString() {
-        return "Config{" +
-                "numberOfExpression(-n)=" + numberOfExpression +
-                ", range(-r)=" + range +
-                ", maxNumberOfOperation(-mo)=" + maxNumberOfOperation +
-                ", hasFraction(-hf)=" + hasFraction +
-                ", hasMultipleAndDivide(-md)=" + hasMultipleAndDivide +
-                ", hasParentheses(-hp)=" + hasParentheses +
-                ", hasNegative(-hn)=" + hasNegative +
-                '}';
+        return "------------------------------------Config-------------------------------------" + "\n" +
+                "number of expression(-n):" + numberOfExpression + "\n" +
+                "range of operand(-r):" + range + "\n" +
+                "max number of operation(-mo):" + maxNumberOfOperation + "\n" +
+                "has fraction?(-hf):" + hasFraction + "\n" +
+                "has multiple or divide operation?(-md):" + hasMultipleAndDivide + "\n" +
+                "has parentheses?(-hp):" + hasParentheses + "\n" +
+                "has negative?(-hn):" + hasNegative + "\n" +
+                "------------------------------------------------------------------------------- ";
     }
 }

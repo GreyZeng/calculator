@@ -13,6 +13,8 @@ public class Generator implements IGenerator {
     @Override
     public Set<Expression> generate(Config config) {
         // TODO
+        System.out.println(config);
+        System.out.println("Start to generate...");
         return newHashSet();
     }
 
