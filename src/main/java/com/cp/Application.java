@@ -1,6 +1,8 @@
 package com.cp;
 
 
+import com.cp.core.impl.Generator;
+
 /**
  * @author zenghui<410486047@qq.com>
  * @date 2017/9/22

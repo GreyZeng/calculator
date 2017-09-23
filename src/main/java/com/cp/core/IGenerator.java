@@ -1,4 +1,6 @@
-package com.cp;
+package com.cp.core;
+
+import com.cp.Config;
 
 import java.util.Set;
 
@@ -9,7 +11,4 @@ import java.util.Set;
 public interface IGenerator {
     // generate  exercise with answer
     Set<Expression> generate(Config config);
-
-    // answer the expression
-    Expression answer(String expression);
 }

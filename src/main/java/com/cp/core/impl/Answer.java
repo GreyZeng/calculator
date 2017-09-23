@@ -1,31 +1,22 @@
-package com.cp;
+package com.cp.core.impl;
 
+import com.cp.core.Expression;
+import com.cp.core.IAnswer;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Objects;
-import java.util.Set;
 import java.util.Stack;
 
-import static com.google.common.collect.Sets.newHashSet;
+import static com.google.common.base.Objects.equal;
+import static java.lang.Double.parseDouble;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
 /**
  * @author zenghui<410486047@qq.com>
  * @date 2017/9/23
  */
-public class Generator implements IGenerator {
-
-    @Override
-    public Set<Expression> generate(Config config) {
-        // TODO
-        System.out.println(config);
-        System.out.println("Start to generate...");
-        return newHashSet();
-    }
-
+public class Answer implements IAnswer {
     @Override
     public Expression answer(String expression) {
-
         if (StringUtils.isEmpty(expression)) {
             // TODO handle Exception
             return null;
@@ -35,37 +26,36 @@ public class Generator implements IGenerator {
         String[] exprs = expression.split(SPACE);
 
         for (String op : exprs) {
-            if (Objects.equals(op, "(")) {
+            if (equal(op, "(")) {
                 continue;
-            } else if (Objects.equals(op, "+")) {
+            } else if (equal(op, "+")) {
                 ops.push(op);
-            } else if (Objects.equals(op, "-")) {
+            } else if (equal(op, "-")) {
                 ops.push(op);
-            } else if (Objects.equals(op, "×")) {
+            } else if (equal(op, "×")) {
                 ops.push(op);
-            } else if (Objects.equals(op, "÷")) {
+            } else if (equal(op, "÷")) {
                 ops.push(op);
-            } else if (Objects.equals(op, ")")) {
+            } else if (equal(op, ")")) {
                 String lastOp = ops.pop();
                 double val = vals.pop();
-                if (Objects.equals(lastOp, "+")) {
+                if (equal(lastOp, "+")) {
                     val = vals.pop() + val;
                 }
-                if (Objects.equals(lastOp, "-")) {
+                if (equal(lastOp, "-")) {
                     val = vals.pop() - val;
                 }
-                if (Objects.equals(lastOp, "×")) {
+                if (equal(lastOp, "×")) {
                     val = vals.pop() * val;
                 }
-                if (Objects.equals(lastOp, "÷")) {
+                if (equal(lastOp, "÷")) {
                     val = vals.pop() / val;
                 }
                 vals.push(val);
             } else {
-                vals.push(Double.parseDouble(op));
+                vals.push(parseDouble(op));
             }
         }
         return Expression.create(expression).value(vals.pop());
     }
-
 }
