@@ -1,3 +1,5 @@
+package com.cp;
+
 import com.cp.Config;
 import org.junit.Test;
 
