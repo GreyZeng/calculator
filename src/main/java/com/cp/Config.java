@@ -133,6 +133,11 @@ public class Config {
         this.range = range;
     }
 
+    public String[] generateAvailableOperators() {
+        if (this.hasMultipleAndDivide)
+            return new String[]{"+", "-", "×", "÷"};
+        return new String[]{"+", "-"};
+    }
     @Override
     public String toString() {
         return "------------------------------------Config-------------------------------------" + "\n" +

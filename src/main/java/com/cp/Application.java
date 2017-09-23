@@ -1,7 +1,10 @@
 package com.cp;
 
 
+import com.cp.core.Expression;
 import com.cp.core.impl.Generator;
+
+import java.util.Set;
 
 /**
  * @author zenghui<410486047@qq.com>
@@ -9,6 +12,8 @@ import com.cp.core.impl.Generator;
  */
 public class Application {
     public static void main(String[] args) {
-        new Generator().generate(Config.create(args));
+        Set<Expression> expressions = new Generator().generate(Config.create(args));
+        expressions.forEach(expression -> System.out.println(expression.getExpression()));
+
     }
 }
