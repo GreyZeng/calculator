@@ -138,6 +138,7 @@ public class Config {
             return new String[]{"+", "-", "×", "÷"};
         return new String[]{"+", "-"};
     }
+
     @Override
     public String toString() {
         return "------------------------------------Config-------------------------------------" + "\n" +
