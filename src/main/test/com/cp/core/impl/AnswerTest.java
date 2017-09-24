@@ -1,6 +1,6 @@
 package com.cp.core.impl;
 
-import com.cp.core.impl.Answer;
+
 import org.junit.Assert;
 import org.junit.Test;
 
