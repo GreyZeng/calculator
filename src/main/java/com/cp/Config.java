@@ -4,7 +4,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
 /**
- * @author zenghui<410486047@qq.com>
+ * @author zenghui<4   1   0   4   8   6   0   4   7   @   qq.com>
  * @date 2017/9/22
  */
 public class Config {
@@ -12,8 +12,6 @@ public class Config {
     private int numberOfExpression = 10; // 生成表达式个数
     @Parameter(names = {"-r", "-range"}, description = "range of operand")
     private int range = 10; //控制题目中数值（自然数、真分数和真分数分母）的范围，该参数可以设置为1或其他自然数。该参数必须给定，否则程序报错并给出帮助信息
-    @Parameter(names = "-mo", description = "max number of operation")
-    private int maxNumberOfOperation = 3; // 最大运算符数量
     @Parameter(names = "-hf", description = "has fraction or not", arity = 1)
     private boolean hasFraction = false; // 有无分数
     @Parameter(names = "-md", description = "has multiple or divide operation", arity = 1)
@@ -23,8 +21,11 @@ public class Config {
     @Parameter(names = "-hn", description = "has negative or not", arity = 1)
     private boolean hasNegative = false; // 有无负数
 
-    private Config() {
+    // 最大运算符数量 最多不能超过三个
+    // @Parameter(names = "-mo", description = "max number of operation")
+    private int maxNumberOfOperation = 3;
 
+    private Config() {
     }
 
     public static Config create() {
@@ -133,11 +134,6 @@ public class Config {
         this.range = range;
     }
 
-    public String[] generateAvailableOperators() {
-        if (this.hasMultipleAndDivide)
-            return new String[]{"+", "-", "×", "÷"};
-        return new String[]{"+", "-"};
-    }
 
     @Override
     public String toString() {

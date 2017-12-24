@@ -1,7 +1,6 @@
 package com.cp.core.impl;
 
 import com.cp.core.Expression;
-import com.cp.core.IAnswer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Stack;
@@ -14,8 +13,7 @@ import static org.apache.commons.lang3.StringUtils.SPACE;
  * @author zenghui<410486047@qq.com>
  * @date 2017/9/23
  */
-public class Answer implements IAnswer {
-    @Override
+public class Answer {
     public Expression answer(String expression) {
         if (StringUtils.isEmpty(expression)) {
             // TODO handle Exception

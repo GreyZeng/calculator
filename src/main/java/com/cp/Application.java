@@ -12,9 +12,7 @@ import java.util.Set;
  */
 public class Application {
     public static void main(String[] args) {
-
-        Set<Expression> expressions = new Generator().generate(Config.create(args));
+        Set<Expression> expressions = Generator.generate(Config.create(args));
         expressions.forEach(expression -> System.out.println(expression.getExpression()));
-
     }
 }
