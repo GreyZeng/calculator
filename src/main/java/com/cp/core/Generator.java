@@ -59,6 +59,7 @@ public class Generator {
             String expression = Joiner.on(SPACE).join(exp);
             if (hasDulplicate(set, expression)) {
                 i--;
+                continue;
             } else {
                 set.add(Expression.create(expression));
             }
