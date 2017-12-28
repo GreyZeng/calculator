@@ -1,13 +1,14 @@
 package com.cp;
 
 
-import com.cp.core.Expression;
-import com.cp.core.impl.Generator;
+import com.cp.ds.Config;
+import com.cp.ds.Expression;
+import com.cp.core.Generator;
 
 import java.util.Set;
 
 /**
- * @author zenghui<410486047@qq.com>
+ * @author zenghui
  * @date 2017/9/22
  */
 public class Application {

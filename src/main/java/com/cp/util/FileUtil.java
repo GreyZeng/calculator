@@ -1,7 +1,7 @@
 package com.cp.util;
 
 /**
- * @author zenghui<410486047@qq.com>
+ * @author zenghui
  * @date 2017/9/22
  */
 public class FileUtil {

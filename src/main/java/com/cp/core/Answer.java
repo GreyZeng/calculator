@@ -1,6 +1,6 @@
-package com.cp.core.impl;
+package com.cp.core;
 
-import com.cp.core.Expression;
+import com.cp.ds.Expression;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Stack;
@@ -10,7 +10,7 @@ import static java.lang.Double.parseDouble;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
 /**
- * @author zenghui<410486047@qq.com>
+ * @author zenghui
  * @date 2017/9/23
  */
 public class Answer {

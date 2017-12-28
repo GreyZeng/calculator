@@ -1,20 +1,23 @@
-package com.cp.core.impl;
+package com.cp.core;
 
-import com.cp.Config;
-import com.cp.core.Expression;
+import com.cp.ds.BinaryTree;
+import com.cp.ds.Config;
+import com.cp.ds.Expression;
 import com.google.common.base.Joiner;
+import com.google.common.base.Objects;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.cp.ds.BinaryTree.generateExpression;
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
 /**
- * @author zenghui<410486047@qq.com>
+ * @author zenghui
  * @date 2017/9/23
  */
 public class Generator {
@@ -28,15 +31,12 @@ public class Generator {
         boolean isHasFraction = config.isHasFraction();
 
         for (int i = 0; i < numberOfExpression; i++) {
-            // number of operation could be from 0 to maxNum
-            int randomNumberOfOperation = ThreadLocalRandom.current().nextInt(0, config.getMaxNumberOfOperation() + 1);
 
-            if (randomNumberOfOperation == 0) {
-                set.add(Expression.create(generateOprand(isHasFraction, config.getRange())));
-                continue;
-            }
+            int randomNumberOfOperation = ThreadLocalRandom.current().nextInt(1, config.getMaxNumberOfOperation() + 1);
+
             int markFraction = 0;
             if (isHasFraction) {
+                // isHasFraction == true 说明至少有一个分数，标识一下分数所在的位置
                 markFraction = ThreadLocalRandom.current().nextInt(0, randomNumberOfOperation + 1) * 2;
             }
             int numberOfOpand = randomNumberOfOperation + 1;
@@ -56,11 +56,33 @@ public class Generator {
                     exp[j] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()));
                 }
             }
-            set.add(Expression.create(Joiner.on(SPACE).join(exp)));
+            String expression = Joiner.on(SPACE).join(exp);
+            if (hasDulplicate(set, expression)) {
+                i--;
+            } else {
+                set.add(Expression.create(expression));
+            }
+
         }
         return set;
     }
 
+    private static boolean hasDulplicate(Set<Expression> expressions, String expression) {
+        for (Expression item : expressions) {
+            if (isDulplicate(item.getExpression(), expression)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isDulplicate(String expression1, String expression2) {
+        if (equal(generateExpression(BinaryTree.create(expression1).getRoot()),
+                generateExpression(BinaryTree.create(expression2).getRoot()))) {
+            return true;
+        }
+        return false;
+    }
     public static String[] generateAvailableOperators(boolean hasMultipleAndDivide) {
         if (hasMultipleAndDivide) {
             return new String[]{"+", "-", "×", "÷"};

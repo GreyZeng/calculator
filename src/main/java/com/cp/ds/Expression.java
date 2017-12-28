@@ -1,9 +1,9 @@
-package com.cp.core;
+package com.cp.ds;
 
 import org.apache.commons.math3.fraction.Fraction;
 
 /**
- * @author zenghui<410486047@qq.com>
+ * @author zenghui
  * @date 2017/9/23
  */
 public class Expression {

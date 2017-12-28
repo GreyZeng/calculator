@@ -1,15 +1,13 @@
-package com.cp;
+package com.cp.ds;
 
-import com.cp.core.Expression;
-import com.cp.core.impl.Generator;
 import com.google.common.base.Joiner;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.Stack;
 
-import static com.cp.core.impl.Generator.generateAvailableOperators;
+import static com.cp.core.Generator.generateAvailableOperators;
+import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.apache.commons.lang3.ArrayUtils.contains;
 import static org.apache.commons.lang3.StringUtils.*;
@@ -25,12 +23,30 @@ public class BinaryTree {
 
     private static List<String> output = newArrayList();
 
+    public static String generateExpression(Node root) {
+        if (root.left == null && root.right == null) {
+            return root.value;
+        } else if (equal(root.value, "+") || equal(root.value, "×")) {
+            String left = generateExpression(root.left);
+            String right = generateExpression(root.right);
+            if (compare(left, right) <= 0) {
+                return root.value + left + right;
+            } else {
+                return root.value + right + left;
+            }
+        } else {
+            return root.value + generateExpression(root.left) + generateExpression(root.right);
+        }
 
+    }
     public static BinaryTree create(String exp) {
         output.clear();
         return construct(infixToSuffix(exp));
     }
 
+    public Node getRoot() {
+        return this.root;
+    }
     private BinaryTree(Node root) {
         this.root = root;
     }
@@ -145,15 +161,6 @@ public class BinaryTree {
         }
         return expression;
     }
-
-    public static void main(String[] args) {
-        Set<Expression> expressions = Generator.generate(Config.create(args));
-        for (Expression expression : expressions) {
-            System.out.println(BinaryTree.create(expression.getExpression()).inOrder());
-            System.out.println(expression.getExpression());
-        }
-    }
-
 }
 
 class Node {
