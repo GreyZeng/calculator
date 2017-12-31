@@ -51,7 +51,7 @@ public class BinaryTree {
         this.root = root;
     }
 
-    private static List<String> infixToSuffix(String exp) {
+    public static List<String> infixToSuffix(String exp) {
         Stack<String> theStack = new Stack<>();
         if (isEmpty(exp)) {
             return newArrayList();

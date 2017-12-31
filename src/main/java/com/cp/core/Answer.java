@@ -1,59 +1,60 @@
 package com.cp.core;
 
 import com.cp.ds.Expression;
-import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
 import java.util.Stack;
 
-import static com.google.common.base.Objects.equal;
+import static com.cp.ds.BinaryTree.infixToSuffix;
 import static java.lang.Double.parseDouble;
-import static org.apache.commons.lang3.StringUtils.SPACE;
 
 /**
  * @author zenghui
  * @date 2017/9/23
  */
 public class Answer {
-    public Expression answer(String expression) {
-        if (StringUtils.isEmpty(expression)) {
-            // TODO handle Exception
-            return null;
-        }
-        Stack<String> ops = new Stack<>();
-        Stack<Double> vals = new Stack<>();
-        String[] exprs = expression.split(SPACE);
 
-        for (String op : exprs) {
-            if (equal(op, "(")) {
-                continue;
-            } else if (equal(op, "+")) {
-                ops.push(op);
-            } else if (equal(op, "-")) {
-                ops.push(op);
-            } else if (equal(op, "×")) {
-                ops.push(op);
-            } else if (equal(op, "÷")) {
-                ops.push(op);
-            } else if (equal(op, ")")) {
-                String lastOp = ops.pop();
-                double val = vals.pop();
-                if (equal(lastOp, "+")) {
-                    val = vals.pop() + val;
-                }
-                if (equal(lastOp, "-")) {
-                    val = vals.pop() - val;
-                }
-                if (equal(lastOp, "×")) {
-                    val = vals.pop() * val;
-                }
-                if (equal(lastOp, "÷")) {
-                    val = vals.pop() / val;
-                }
-                vals.push(val);
+
+    public static void answer(Expression expression) {
+        Stack<Double> s = new Stack<>();
+        Double a, b, result = 0.0;
+        List<String> suffix = infixToSuffix(expression.getExpression());
+        boolean isNumber;
+        for (String item : suffix) {
+            try {
+                isNumber = true;
+                result = parseDouble(item);
+            } catch (Exception e) {
+                isNumber = false;
+            }
+
+            if (isNumber) {
+                s.push(result);
             } else {
-                vals.push(parseDouble(op));
+                switch (item) {
+                    case "+":
+                        a = s.pop();
+                        b = s.pop();
+                        s.push(b + a);
+                        break;
+                    case "-":
+                        a = s.pop();
+                        b = s.pop();
+                        s.push(b - a);
+                        break;
+                    case "×":
+                        a = s.pop();
+                        b = s.pop();
+                        s.push(b * a);
+                        break;
+                    case "÷":
+                        a = s.pop();
+                        b = s.pop();
+                        s.push(b / a);
+                        break;
+                }
             }
         }
-        return Expression.create(expression).value(vals.pop());
+        expression.setValue(s.peek());
     }
 }
