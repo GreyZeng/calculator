@@ -1,9 +1,10 @@
 package com.cp;
 
 
+import com.cp.core.Answer;
+import com.cp.core.Generator;
 import com.cp.ds.Config;
 import com.cp.ds.Expression;
-import com.cp.core.Generator;
 
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import java.util.Set;
 public class Application {
     public static void main(String[] args) {
         Set<Expression> expressions = Generator.generate(Config.create(args));
-        expressions.forEach(expression -> System.out.println(expression.getExpression()));
+        Answer.answer(expressions);
+        expressions.forEach(expression -> System.out.println(expression));
     }
 }
