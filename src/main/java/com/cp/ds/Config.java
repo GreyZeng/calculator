@@ -17,7 +17,7 @@ public class Config {
     @Parameter(names = "-md", description = "has multiple or divide operation", arity = 1)
     private boolean hasMultipleAndDivide = false; // 是否有乘除法
     @Parameter(names = "-hp", description = "has parentheses or not", arity = 1)
-    private boolean hasParentheses = false; // 是否有括号
+    private boolean hasParentheses = true; // 是否有括号
     @Parameter(names = "-hn", description = "has negative or not", arity = 1)
     private boolean hasNegative = false; // 有无负数
 

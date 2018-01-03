@@ -4,15 +4,16 @@ import com.cp.ds.BinaryTree;
 import com.cp.ds.Config;
 import com.cp.ds.Expression;
 import com.google.common.base.Joiner;
-import com.google.common.base.Objects;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.cp.ds.BinaryTree.generateExpression;
 import static com.google.common.base.Objects.equal;
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
@@ -56,8 +57,13 @@ public class Generator {
                     exp[j] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()));
                 }
             }
-            String expression = Joiner.on(SPACE).join(exp);
-            if (hasDulplicate(set, expression)) {
+            String expression;
+            if (config.isHasParentheses()) {
+                expression = Joiner.on(SPACE).join(markParentheses(exp));
+            } else {
+                expression = Joiner.on(SPACE).join(exp);
+            }
+            if (hasDuplicate(set, expression)) {
                 i--;
                 continue;
             } else {
@@ -68,22 +74,65 @@ public class Generator {
         return set;
     }
 
-    private static boolean hasDulplicate(Set<Expression> expressions, String expression) {
+    private static List<String> markParentheses(String[] exp) {
+        List<String> expression = newArrayList();
+        if (null != exp) {
+            int length = exp.length;
+            int leftPosition = ThreadLocalRandom.current().nextInt(0, (length / 2));
+            int rightPosition = ThreadLocalRandom.current().nextInt(leftPosition + 1, (length / 2) + 1);
+            int mark = -1;
+            for (int i = 0; i < length; i++) {
+                if (isOperator(exp[i])) {
+                    expression.add(exp[i]);
+                } else {
+                    mark++;
+                    if (mark == leftPosition) {
+                        expression.add("(");
+                        expression.add(exp[i]);
+                    } else if (mark == rightPosition) {
+                        expression.add(exp[i]);
+                        expression.add(")");
+                    } else {
+                        expression.add(exp[i]);
+                    }
+                }
+            }
+        }
+        return expression;
+    }
+
+    private static boolean isOperator(String item) {
+        switch (item) {
+            case "+":
+                return true;
+            case "-":
+                return true;
+            case "×":
+                return true;
+            case "÷":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private static boolean hasDuplicate(Set<Expression> expressions, String expression) {
         for (Expression item : expressions) {
-            if (isDulplicate(item.getExpression(), expression)) {
+            if (isDuplicate(item.getExpression(), expression)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean isDulplicate(String expression1, String expression2) {
+    public static boolean isDuplicate(String expression1, String expression2) {
         if (equal(generateExpression(BinaryTree.create(expression1).getRoot()),
                 generateExpression(BinaryTree.create(expression2).getRoot()))) {
             return true;
         }
         return false;
     }
+
     public static String[] generateAvailableOperators(boolean hasMultipleAndDivide) {
         if (hasMultipleAndDivide) {
             return new String[]{"+", "-", "×", "÷"};

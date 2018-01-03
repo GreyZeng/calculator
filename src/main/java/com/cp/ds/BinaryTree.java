@@ -1,7 +1,5 @@
 package com.cp.ds;
 
-import com.google.common.base.Joiner;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
@@ -19,7 +17,6 @@ import static org.apache.commons.lang3.StringUtils.*;
 public class BinaryTree {
 
     private Node root;
-    private String expression = EMPTY;
 
     private static List<String> output = newArrayList();
 
@@ -149,18 +146,7 @@ public class BinaryTree {
         return contains(generateAvailableOperators(true), item);
     }
 
-    private String inOrder() {
-        return inOrder(root);
-    }
 
-    private String inOrder(Node root) {
-        if (root != null) {
-            inOrder(root.left);
-            expression = Joiner.on(SPACE).join(expression, root.value);
-            inOrder(root.right);
-        }
-        return expression;
-    }
 }
 
 class Node {
