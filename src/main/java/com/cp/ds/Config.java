@@ -8,21 +8,41 @@ import com.beust.jcommander.Parameter;
  * @date 2017/9/22
  */
 public class Config {
+    /**
+     * 生成表达式个数
+     */
     @Parameter(names = {"-n", "-number"}, description = "number of expression")
-    private int numberOfExpression = 10; // 生成表达式个数
+    private int numberOfExpression = 10;
+    /**
+     * 控制题目中数值（自然数、真分数和真分数分母）的范围，该参数可以设置为1或其他自然数。该参数必须给定，否则程序报错并给出帮助信息
+     */
     @Parameter(names = {"-r", "-range"}, description = "range of operand")
-    private int range = 10; //控制题目中数值（自然数、真分数和真分数分母）的范围，该参数可以设置为1或其他自然数。该参数必须给定，否则程序报错并给出帮助信息
+    private int range = 10;
+    /**
+     * 有无分数
+     */
     @Parameter(names = "-hf", description = "has fraction or not", arity = 1)
-    private boolean hasFraction = true; // 有无分数
+    private boolean hasFraction = true;
+    /**
+     * 是否有乘除法
+     */
     @Parameter(names = "-md", description = "has multiple or divide operation", arity = 1)
-    private boolean hasMultipleAndDivide = false; // 是否有乘除法
+    private boolean hasMultipleAndDivide = false;
+    /**
+     * 是否有括号
+     */
     @Parameter(names = "-hp", description = "has parentheses or not", arity = 1)
-    private boolean hasParentheses = true; // 是否有括号
+    private boolean hasParentheses = true;
+    /**
+     * 有无负数
+     */
     @Parameter(names = "-hn", description = "has negative or not", arity = 1)
-    private boolean hasNegative = false; // 有无负数
+    private boolean hasNegative = false;
 
-    // 最大运算符数量 至少1个，最多不能超过3个
-    // @Parameter(names = "-mo", description = "max number of operation")
+    /**
+     * 最大运算符数量 至少1个，目前最多不能超过3个 TODO: 后续扩展多个
+     * 配置：@Parameter(names = "-mo", description = "max number of operation")
+     */
     private int maxNumberOfOperation = 3;
 
     private Config() {

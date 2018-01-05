@@ -1,10 +1,11 @@
 package com.cp.ds;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Stack;
 
 import static com.cp.core.Generator.generateAvailableOperators;
+import static com.cp.ds.Constants.MULTIPLY;
+import static com.cp.ds.Constants.PLUS;
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.apache.commons.lang3.ArrayUtils.contains;
@@ -20,10 +21,15 @@ public class BinaryTree {
 
     private static List<String> output = newArrayList();
 
+    public static BinaryTree create(String exp) {
+        output.clear();
+        return construct(infixToSuffix(exp));
+    }
+
     public static String generateExpression(Node root) {
         if (root.left == null && root.right == null) {
             return root.value;
-        } else if (equal(root.value, "+") || equal(root.value, "×")) {
+        } else if (equal(root.value, PLUS) || equal(root.value, MULTIPLY)) {
             String left = generateExpression(root.left);
             String right = generateExpression(root.right);
             if (compare(left, right) <= 0) {
@@ -36,16 +42,9 @@ public class BinaryTree {
         }
 
     }
-    public static BinaryTree create(String exp) {
-        output.clear();
-        return construct(infixToSuffix(exp));
-    }
 
     public Node getRoot() {
         return this.root;
-    }
-    private BinaryTree(Node root) {
-        this.root = root;
     }
 
     public static List<String> infixToSuffix(String exp) {
@@ -83,15 +82,19 @@ public class BinaryTree {
         return output;
     }
 
+    private BinaryTree(Node root) {
+        this.root = root;
+    }
+
     private static void gotOper(String opThis, int prec1, Stack<String> theStack) {
         while (!theStack.isEmpty()) {
             String opTop = theStack.pop();
-            if (Objects.equals(opTop, "(")) {
+            if (equal(opTop, "(")) {
                 theStack.push(opTop);
                 break;
             } else {
                 int prec2;
-                if (Objects.equals(opTop, "+") || Objects.equals(opTop, "-")) {
+                if (equal(opTop, "+") || equal(opTop, "-")) {
                     prec2 = 1;
                 } else {
                     prec2 = 2;
@@ -110,7 +113,7 @@ public class BinaryTree {
     private static void gotParen(Stack<String> theStack) {
         while (!theStack.isEmpty()) {
             String item = theStack.pop();
-            if (Objects.equals(item, "(")) {
+            if (equal(item, "(")) {
                 break;
             } else {
                 output.add(item);
@@ -141,12 +144,9 @@ public class BinaryTree {
         return new BinaryTree(parent);
     }
 
-
     private static boolean isOperator(String item) {
         return contains(generateAvailableOperators(true), item);
     }
-
-
 }
 
 class Node {

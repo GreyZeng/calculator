@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.cp.ds.BinaryTree.generateExpression;
+import static com.cp.ds.Constants.*;
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
@@ -22,6 +23,7 @@ import static org.apache.commons.lang3.StringUtils.SPACE;
  * @date 2017/9/23
  */
 public class Generator {
+
 
     public static Set<Expression> generate(Config config) {
 
@@ -49,9 +51,9 @@ public class Generator {
                     } else {
                         exp[j] = generateOprand(randomFlag(isHasFraction), config.getRange());
                     }
-                    if (j > 0 && equal(exp[j - 1], "÷") && equal(exp[j], "0")) {
+                    if (j > 0 && equal(exp[j - 1], DIVIDE) && equal(exp[j], ZERO)) {
                         // could not be ÷ 0 , re generator operator from + - x
-                        exp[j - 1] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()), "÷");
+                        exp[j - 1] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()), DIVIDE);
                     }
                 } else {
                     exp[j] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()));
@@ -103,13 +105,13 @@ public class Generator {
 
     private static boolean isOperator(String item) {
         switch (item) {
-            case "+":
+            case PLUS:
                 return true;
-            case "-":
+            case MINUS:
                 return true;
-            case "×":
+            case MULTIPLY:
                 return true;
-            case "÷":
+            case DIVIDE:
                 return true;
             default:
                 return false;
@@ -135,9 +137,9 @@ public class Generator {
 
     public static String[] generateAvailableOperators(boolean hasMultipleAndDivide) {
         if (hasMultipleAndDivide) {
-            return new String[]{"+", "-", "×", "÷"};
+            return new String[]{PLUS, MINUS, MULTIPLY, DIVIDE};
         }
-        return new String[]{"+", "-"};
+        return new String[]{PLUS, MINUS};
     }
 
     private static boolean randomFlag(boolean isHasFraction) {
