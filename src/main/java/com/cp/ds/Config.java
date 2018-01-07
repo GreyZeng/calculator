@@ -27,7 +27,7 @@ public class Config {
      * 是否有乘除法
      */
     @Parameter(names = "-md", description = "has multiple or divide operation", arity = 1)
-    private boolean hasMultipleAndDivide = false;
+    private boolean hasMultipleAndDivide = true;
     /**
      * 是否有括号
      */
