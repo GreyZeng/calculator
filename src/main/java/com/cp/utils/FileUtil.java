@@ -1,4 +1,4 @@
-package com.cp.util;
+package com.cp.utils;
 
 /**
  * @author zenghui

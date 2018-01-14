@@ -1,4 +1,4 @@
-package com.cp.ds;
+package com.cp.models;
 
 /**
  * 常量类

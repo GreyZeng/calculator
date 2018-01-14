@@ -1,9 +1,18 @@
 package com.cp.webservice.impl;
 
+import com.cp.core.Answer;
+import com.cp.core.Generator;
+import com.cp.models.Config;
+import com.cp.models.Expression;
 import com.cp.webservice.CalculateService;
+import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebService;
+import java.util.LinkedHashMap;
+import java.util.Set;
+
+import static com.google.common.collect.Maps.newLinkedHashMap;
 
 /**
  * @author zenghui
@@ -15,24 +24,30 @@ import javax.jws.WebService;
 )
 @Component
 public class CalculateServiceImpl implements CalculateService {
+
     @Override
     public String generate(String configs) {
-        /*Set<Expression> expressions =  Generator.generate(Config.create(configs));
-        return expressions.toString();*/
-        // TODO
-        return "Success";
+        Set<Expression> expressions = Generator.generate(Config.create(configs));
+        Answer.answer(expressions);
+        return expressions.toString();
     }
 
     @Override
-    public String answer(String expressions) {
-        /*if (null != expressions) {
-            for (Expression expression : expressions) {
-                Answer.answer(expression);
-            }
-        }
+    public String answer(String expression) {
+        return Answer.answer(expression);
+    }
 
-        return expressions;*/
-        // TODO
-        return "Success";
+    @Override
+    public String retrieveDefaultTemplate() {
+        Gson gson = new Gson();
+        LinkedHashMap<String, Object> map = newLinkedHashMap();
+        map.put("numberOfExpression", "10");
+        map.put("range", "10");
+        map.put("hasFraction", "false");
+        map.put("hasMultipleAndDivide", "true");
+        map.put("hasParentheses", "false");
+        map.put("hasNegative", "true");
+        map.put("answer", "true");
+        return gson.toJson(map);
     }
 }

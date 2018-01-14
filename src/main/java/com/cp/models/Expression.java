@@ -1,4 +1,4 @@
-package com.cp.ds;
+package com.cp.models;
 
 import org.apache.commons.math3.fraction.Fraction;
 

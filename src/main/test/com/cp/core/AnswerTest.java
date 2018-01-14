@@ -1,6 +1,6 @@
 package com.cp.core;
 
-import com.cp.ds.Expression;
+import com.cp.models.Expression;
 import org.junit.Assert;
 import org.junit.Test;
 

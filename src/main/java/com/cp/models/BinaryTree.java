@@ -1,10 +1,10 @@
-package com.cp.ds;
+package com.cp.models;
 
 import java.util.List;
 import java.util.Stack;
 
 import static com.cp.core.Generator.generateAvailableOperators;
-import static com.cp.ds.Constants.*;
+import static com.cp.models.Constants.*;
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.apache.commons.lang3.ArrayUtils.contains;

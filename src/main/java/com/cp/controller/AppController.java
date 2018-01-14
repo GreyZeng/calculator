@@ -1,7 +1,7 @@
 package com.cp.controller;
 
 
-import com.cp.ds.Config;
+import com.cp.models.Config;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 

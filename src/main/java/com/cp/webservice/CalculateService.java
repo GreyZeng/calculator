@@ -13,11 +13,31 @@ import javax.jws.WebService;
         targetNamespace = "http://webservice.cp.com/"
 )
 public interface CalculateService {
+    /**
+     * 生成表达式API
+     *
+     * @param configs
+     * @return
+     */
     @WebMethod
     @WebResult(name = "String", targetNamespace = "")
     String generate(@WebParam(name = "configs") String configs);
 
+    /**
+     * 答题API 暂时支持一题
+     * @param expression
+     * @return
+     */
     @WebMethod
     @WebResult(name = "String", targetNamespace = "")
-    String answer(@WebParam(name = "expression") String expressions);
+    String answer(@WebParam(name = "expression") String expression);
+
+    /**
+     * 获取默认的配置信息模板，可用于生成表达式的配置
+     *
+     * @return
+     */
+    @WebMethod
+    @WebResult(name = "String", targetNamespace = "")
+    String retrieveDefaultTemplate();
 }

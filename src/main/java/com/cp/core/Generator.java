@@ -1,8 +1,8 @@
 package com.cp.core;
 
-import com.cp.ds.BinaryTree;
-import com.cp.ds.Config;
-import com.cp.ds.Expression;
+import com.cp.models.BinaryTree;
+import com.cp.models.Config;
+import com.cp.models.Expression;
 import com.google.common.base.Joiner;
 
 import java.util.Arrays;
@@ -11,8 +11,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.cp.ds.BinaryTree.generateExpression;
-import static com.cp.ds.Constants.*;
+import static com.cp.models.BinaryTree.generateExpression;
+import static com.cp.models.Constants.*;
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;

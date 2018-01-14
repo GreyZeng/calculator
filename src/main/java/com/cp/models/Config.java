@@ -1,7 +1,15 @@
-package com.cp.ds;
+package com.cp.models;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import com.google.gson.Gson;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.Integer.parseInt;
 
 /**
  * @author zenghui
@@ -22,7 +30,7 @@ public class Config {
      * 有无分数
      */
     @Parameter(names = "-hf", description = "has fraction or not", arity = 1)
-    private boolean hasFraction = true;
+    private boolean hasFraction = false;
     /**
      * 是否有乘除法
      */
@@ -32,13 +40,14 @@ public class Config {
      * 是否有括号
      */
     @Parameter(names = "-hp", description = "has parentheses or not", arity = 1)
-    private boolean hasParentheses = true;
+    private boolean hasParentheses = false;
     /**
-     * 有无负数
+     * 有无负数 TODO
      */
     @Parameter(names = "-hn", description = "has negative or not", arity = 1)
-    private boolean hasNegative = false;
-
+    private boolean hasNegative = true;
+    @Parameter(names = "-as", description = "anser the expression or not", arity = 1)
+    private boolean answer = true;
     /**
      * 最大运算符数量 至少1个，目前最多不能超过3个 TODO: 后续扩展多个
      * 配置：@Parameter(names = "-mo", description = "max number of operation")
@@ -62,6 +71,24 @@ public class Config {
         return config;
     }
 
+    public static Config create(String config) {
+        if (StringUtils.isEmpty(config)) {
+            return Config.create();
+        } else {
+            Gson gson = new Gson();
+            Map<String, String> map = gson.fromJson(config, Map.class);
+            // TODO handler exception
+            return Config.create().hasNegative(parseBoolean(map.get("hasNegative")))
+                    .hasParentheses(parseBoolean(map.get("hasParentheses")))
+                    .hasMultipleAndDivide(parseBoolean(map.get("hasMultipleAndDivide")))
+                    .hasFraction(parseBoolean(map.get("hasFraction")))
+                    .numberOfExpression(parseInt(map.get("numberOfExpression")))
+                    .range(parseInt(map.get("range")))
+                    .answer(parseBoolean(map.get("answer")));
+        }
+    }
+
+
     public Config maxNumberOfOperation(int maxNumberOfOperation) {
         this.maxNumberOfOperation = maxNumberOfOperation;
         return this;
@@ -69,6 +96,11 @@ public class Config {
 
     public Config range(int range) {
         this.range = range;
+        return this;
+    }
+
+    public Config answer(boolean answer) {
+        this.answer = answer;
         return this;
     }
 
@@ -150,10 +182,17 @@ public class Config {
         return range;
     }
 
+    public boolean getAnswer() {
+        return answer;
+    }
+
     public void setRange(int range) {
         this.range = range;
     }
 
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
+    }
 
     @Override
     public String toString() {
@@ -165,6 +204,7 @@ public class Config {
                 "has multiple or divide operation?(-md):" + hasMultipleAndDivide + "\n" +
                 "has parentheses?(-hp):" + hasParentheses + "\n" +
                 "has negative?(-hn):" + hasNegative + "\n" +
+                "with answer?(-as):" + answer + "\n" +
                 "------------------------------------------------------------------------------- ";
     }
 }

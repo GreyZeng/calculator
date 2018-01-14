@@ -1,14 +1,15 @@
 package com.cp.core;
 
-import com.cp.ds.Expression;
+import com.cp.models.Expression;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.fraction.Fraction;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Stack;
 
-import static com.cp.ds.BinaryTree.infixToSuffix;
-import static com.cp.ds.Constants.*;
+import static com.cp.models.BinaryTree.infixToSuffix;
+import static com.cp.models.Constants.*;
 import static java.lang.Integer.parseInt;
 
 /**
@@ -16,7 +17,16 @@ import static java.lang.Integer.parseInt;
  * @date 2017/9/23
  */
 public class Answer {
+    public static String answer(String expressionString) {
+        if (StringUtils.isEmpty(expressionString)) {
+            // TODO handler Exception
+            return expressionString + " = " + "(无法处理的表达式)";
+        }
+        Expression expression = Expression.create(expressionString.trim());
+        answer(expression);
+        return expression.toString();
 
+    }
     public static void answer(Collection<Expression> expressions) {
         if (null != expressions) {
             for (Expression expression : expressions) {
