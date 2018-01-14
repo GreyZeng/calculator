@@ -44,9 +44,9 @@
 ## 接口地址
 http://116.196.74.137:8888/services/CalculateService?wsdl
 
-### 接口方法
+### 生成表达式接口方法
 ```java
-String generate(String configs) // 生成表达式API
+String generate(String configs) 
 ```
 
 入参,字符串类型，可配置项见配置参数：
@@ -65,9 +65,9 @@ String generate(String configs) // 生成表达式API
 ```
 [8 - 5 ÷ 6 × 9 = 0.5, 7 + 8 = 15.0, 9 × 9 = 81.0, 7 × 6 + 4 ÷ 7 = 42.57142857142857, 5 ÷ 7 - 4 = -3.2857142857142856, 2 - 9 - 1 + 1 = -7.0, 3 ÷ 2 × 6 = 9.0, 1 × 0 = 0.0, 4 × 3 = 12.0, 3 - 7 - 5 = -9.0]
 ```
-
+### 答题（目前支持一题）接口方法
 ```java
-String answer(String expression) // 答题（目前支持一题）
+String answer(String expression) 
 ```
 入参：
 ```
@@ -78,9 +78,9 @@ String answer(String expression) // 答题（目前支持一题）
 ```
 4 × ( 9'1/7 - 5 ) ÷ 3 = 5.523809523809524
 ```
-
+### 获取默认的配置项接口方法
 ```java
-String retrieveDefaultTemplate() // 获取默认的配置项
+String retrieveDefaultTemplate() 
 ```
 返回默认的JSON配置：
 ```json
