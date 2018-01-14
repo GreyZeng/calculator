@@ -40,6 +40,13 @@
 - 将中缀表达式转换为后缀表达式，然后对后缀表达式进行计算
 - 计算过程中，设置一个栈，操作数压栈，遇到操作符，出栈两个操作数进行计算结果再压栈，最后栈剩下一个元素即为结果。
 
+## 接口地址
+http://116.196.74.137:8888/services/CalculateService?wsdl
+
+### 接口方法
+- String generate(String configs) // 生成表达式API
+- String answer(String expression) // 答题（目前支持一题）
+- String retrieveDefaultTemplate() // 获取默认的配置项
 
 
 ### [代码](https://github.com/GreyZeng/calculator)
