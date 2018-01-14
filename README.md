@@ -16,6 +16,7 @@
 - -md: 是否有乘除法
 - -hp: 是否有括号
 - -hn: 有无负数
+- -as: 是否生成答案
 - 至少一个运算符，最多三个运算符
 
 注： 解析命令行参数采用了[JCommander](http://www.jcommander.org/)进行解析。
@@ -44,9 +45,54 @@
 http://116.196.74.137:8888/services/CalculateService?wsdl
 
 ### 接口方法
-- String generate(String configs) // 生成表达式API
-- String answer(String expression) // 答题（目前支持一题）
-- String retrieveDefaultTemplate() // 获取默认的配置项
+```java
+String generate(String configs) // 生成表达式API
+```
 
+入参,字符串类型，可配置项见配置参数：
+```json
+{
+  "numberOfExpression": "10",
+  "range": "10",
+  "hasFraction": "false",
+  "hasMultipleAndDivide": "true",
+  "hasParentheses": "false",
+  "hasNegative": "true",
+  "answer": "true"
+}
+```
+返回：
+```
+[8 - 5 ÷ 6 × 9 = 0.5, 7 + 8 = 15.0, 9 × 9 = 81.0, 7 × 6 + 4 ÷ 7 = 42.57142857142857, 5 ÷ 7 - 4 = -3.2857142857142856, 2 - 9 - 1 + 1 = -7.0, 3 ÷ 2 × 6 = 9.0, 1 × 0 = 0.0, 4 × 3 = 12.0, 3 - 7 - 5 = -9.0]
+```
+
+```java
+String answer(String expression) // 答题（目前支持一题）
+```
+入参：
+```
+4 × ( 9'1/7 - 5 ) ÷ 3
+```
+
+返回：
+```
+4 × ( 9'1/7 - 5 ) ÷ 3 = 5.523809523809524
+```
+
+```java
+String retrieveDefaultTemplate() // 获取默认的配置项
+```
+返回默认的JSON配置：
+```json
+{
+  "numberOfExpression": "10",
+  "range": "10",
+  "hasFraction": "false",
+  "hasMultipleAndDivide": "true",
+  "hasParentheses": "false",
+  "hasNegative": "true",
+  "answer": "true"
+}
+```
 
 ### [代码](https://github.com/GreyZeng/calculator)
