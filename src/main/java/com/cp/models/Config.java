@@ -48,6 +48,7 @@ public class Config {
     private boolean hasNegative = true;
     @Parameter(names = "-as", description = "anser the expression or not", arity = 1)
     private boolean answer = true;
+
     /**
      * 最大运算符数量 至少1个，目前最多不能超过3个 TODO: 后续扩展多个
      * 配置：@Parameter(names = "-mo", description = "max number of operation")

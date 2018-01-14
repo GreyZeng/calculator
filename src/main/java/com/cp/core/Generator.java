@@ -72,6 +72,10 @@ public class Generator {
                 set.add(Expression.create(expression));
             }
 
+
+        }
+        if (config.getAnswer()) {
+            Answer.answer(set);
         }
         return set;
     }

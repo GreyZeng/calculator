@@ -6,6 +6,7 @@ import com.cp.models.Config;
 import com.cp.models.Expression;
 import com.cp.webservice.CalculateService;
 import com.google.gson.Gson;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebService;
@@ -13,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import static com.google.common.collect.Maps.newLinkedHashMap;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 /**
  * @author zenghui
@@ -28,7 +30,6 @@ public class CalculateServiceImpl implements CalculateService {
     @Override
     public String generate(String configs) {
         Set<Expression> expressions = Generator.generate(Config.create(configs));
-        Answer.answer(expressions);
         return expressions.toString();
     }
 
@@ -49,5 +50,10 @@ public class CalculateServiceImpl implements CalculateService {
         map.put("hasNegative", "true");
         map.put("answer", "true");
         return gson.toJson(map);
+    }
+
+    public static void main(String[] args) {
+        CalculateServiceImpl service = new CalculateServiceImpl();
+        System.out.println(service.retrieveDefaultTemplate());
     }
 }
