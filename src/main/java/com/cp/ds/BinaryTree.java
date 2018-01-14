@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Stack;
 
 import static com.cp.core.Generator.generateAvailableOperators;
-import static com.cp.ds.Constants.MULTIPLY;
-import static com.cp.ds.Constants.PLUS;
+import static com.cp.ds.Constants.*;
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.apache.commons.lang3.ArrayUtils.contains;
@@ -57,18 +56,18 @@ public class BinaryTree {
         for (int j = 0; j < length; j++) {
             String item = infix[j];
             switch (item) {
-                case "+":
-                case "-":
+                case PLUS:
+                case MINUS:
                     gotOper(item, 1, theStack);
                     break;
-                case "×":
-                case "÷":
+                case MULTIPLY:
+                case DIVIDE:
                     gotOper(item, 2, theStack);
                     break;
-                case "(":
+                case LEFT_PARENTHESES:
                     theStack.push(item);
                     break;
-                case ")":
+                case RIGHT_PARENTHESES:
                     gotParen(theStack);
                     break;
                 default:
@@ -89,12 +88,12 @@ public class BinaryTree {
     private static void gotOper(String opThis, int prec1, Stack<String> theStack) {
         while (!theStack.isEmpty()) {
             String opTop = theStack.pop();
-            if (equal(opTop, "(")) {
+            if (equal(opTop, LEFT_PARENTHESES)) {
                 theStack.push(opTop);
                 break;
             } else {
                 int prec2;
-                if (equal(opTop, "+") || equal(opTop, "-")) {
+                if (equal(opTop, PLUS) || equal(opTop, MINUS)) {
                     prec2 = 1;
                 } else {
                     prec2 = 2;
@@ -113,7 +112,7 @@ public class BinaryTree {
     private static void gotParen(Stack<String> theStack) {
         while (!theStack.isEmpty()) {
             String item = theStack.pop();
-            if (equal(item, "(")) {
+            if (equal(item, LEFT_PARENTHESES)) {
                 break;
             } else {
                 output.add(item);

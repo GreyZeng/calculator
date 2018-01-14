@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Stack;
 
 import static com.cp.ds.BinaryTree.infixToSuffix;
+import static com.cp.ds.Constants.*;
 import static java.lang.Integer.parseInt;
 
 /**
@@ -15,10 +16,6 @@ import static java.lang.Integer.parseInt;
  * @date 2017/9/23
  */
 public class Answer {
-    public static void main(String[] args) {
-        Fraction fraction = Fraction.getReducedFraction(10, 4);
-        System.out.println(fraction.doubleValue());
-    }
 
     public static void answer(Collection<Expression> expressions) {
         if (null != expressions) {
@@ -51,25 +48,27 @@ public class Answer {
                 s.push(result);
             } else {
                 switch (item) {
-                    case "+":
+                    case PLUS:
                         a = s.pop();
                         b = s.pop();
                         s.push(a.add(b));
                         break;
-                    case "-":
+                    case MINUS:
                         a = s.pop();
                         b = s.pop();
                         s.push(b.subtract(a));
                         break;
-                    case "×":
+                    case MULTIPLY:
                         a = s.pop();
                         b = s.pop();
                         s.push(b.multiply(a));
                         break;
-                    case "÷":
+                    case DIVIDE:
                         a = s.pop();
                         b = s.pop();
                         s.push(b.divide(a));
+                        break;
+                    default:
                         break;
                 }
             }
@@ -79,18 +78,18 @@ public class Answer {
     }
 
     private static Fraction getFraction(String item) {
-        int result = 0;
-        if (item.indexOf("/") > 0) {
+        int result;
+        if (item.indexOf(VIRGULE) > 0) {
             int attach = 0;
             String right;
-            if (item.indexOf("'") > 0) {
-                String[] parts = item.split("'");
+            if (item.indexOf(SINGLE_QUOTE) > 0) {
+                String[] parts = item.split(SINGLE_QUOTE);
                 attach = parseInt(parts[0]);
                 right = parts[1];
             } else {
                 right = item;
             }
-            String[] parts = right.split("/");
+            String[] parts = right.split(VIRGULE);
             return Fraction.getReducedFraction(attach * parseInt(parts[1]) + parseInt(parts[0]), parseInt(parts[1]));
         } else {
             result = parseInt(item);

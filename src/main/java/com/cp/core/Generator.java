@@ -89,11 +89,11 @@ public class Generator {
                 } else {
                     mark++;
                     if (mark == leftPosition) {
-                        expression.add("(");
+                        expression.add(LEFT_PARENTHESES);
                         expression.add(exp[i]);
                     } else if (mark == rightPosition) {
                         expression.add(exp[i]);
-                        expression.add(")");
+                        expression.add(RIGHT_PARENTHESES);
                     } else {
                         expression.add(exp[i]);
                     }
@@ -168,15 +168,17 @@ public class Generator {
         denominator = denominator / maxMultiple;
         numerator = numerator / maxMultiple;
         if (leftInteger == 0) {
-            fraction = String.valueOf(numerator) + "/" + String.valueOf(denominator);
+            fraction = String.valueOf(numerator) + VIRGULE + String.valueOf(denominator);
         } else {
-            fraction = String.valueOf(leftInteger) + "'" + String.valueOf(numerator) + "/" + String.valueOf(denominator);
+            fraction = String.valueOf(leftInteger) + SINGLE_QUOTE + String.valueOf(numerator) + VIRGULE + String.valueOf(denominator);
         }
         return fraction;
     }
 
     private static int gcd(int p, int q) {
-        if (q == 0) return p;
+        if (q == 0) {
+            return p;
+        }
         int r = p % q;
         return gcd(q, r);
     }

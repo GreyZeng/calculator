@@ -11,4 +11,8 @@ public interface Constants {
     String MULTIPLY = "×";
     String DIVIDE = "÷";
     String ZERO = "0";
+    String VIRGULE = "/";
+    String SINGLE_QUOTE = "'";
+    String LEFT_PARENTHESES = "(";
+    String RIGHT_PARENTHESES = ")";
 }
