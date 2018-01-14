@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://webservice.cp.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CalculateService"
+                  targetNamespace="http://webservice.cp.com/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.cp.com/"
+                   elementFormDefault="unqualified" targetNamespace="http://webservice.cp.com/" version="1.0">
+
+            <xs:element name="answer" type="tns:answer"/>
+
+            <xs:element name="answerResponse" type="tns:answerResponse"/>
+
+            <xs:element name="generate" type="tns:generate"/>
+
+            <xs:element name="generateResponse" type="tns:generateResponse"/>
+
+            <xs:complexType name="generate">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="configs" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="generateResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="String" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="answer">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="expression" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="answerResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="String" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="answer">
+        <wsdl:part element="tns:answer" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="answerResponse">
+        <wsdl:part element="tns:answerResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="generate">
+        <wsdl:part element="tns:generate" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="generateResponse">
+        <wsdl:part element="tns:generateResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CalculateService">
+        <wsdl:operation name="generate">
+            <wsdl:input message="tns:generate" name="generate">
+            </wsdl:input>
+            <wsdl:output message="tns:generateResponse" name="generateResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="answer">
+            <wsdl:input message="tns:answer" name="answer">
+            </wsdl:input>
+            <wsdl:output message="tns:answerResponse" name="answerResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CalculateServiceSoapBinding" type="tns:CalculateService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="generate">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="generate">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="generateResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="answer">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="answer">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="answerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CalculateService">
+        <wsdl:port binding="tns:CalculateServiceSoapBinding" name="CalculateServiceImplPort">
+            <soap:address location="http://localhost:8888/services/CalculateService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

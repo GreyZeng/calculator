@@ -20,7 +20,7 @@ public class CalculateServiceImpl implements CalculateService {
         /*Set<Expression> expressions =  Generator.generate(Config.create(configs));
         return expressions.toString();*/
         // TODO
-        return null;
+        return "Success";
     }
 
     @Override
@@ -33,6 +33,6 @@ public class CalculateServiceImpl implements CalculateService {
 
         return expressions;*/
         // TODO
-        return null;
+        return "Success";
     }
 }
