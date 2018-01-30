@@ -40,33 +40,36 @@
     <h3 class="demoHeaders">是否有分数</h3>
     <form style="margin-top: 1em;">
         <div class="radioset">
-            <input type="radio" id="hasFraction" name="hasFraction"><label for="hasFraction">有</label>
-            <input type="radio" id="nof" name="hasFraction" checked="checked"><label for="nof">无</label>
+            <input type="radio" id="hasFraction" name="hasFraction" value="true"><label for="hasFraction">有</label>
+            <input type="radio" id="nof" name="hasFraction" checked="checked" value="false"><label for="nof">无</label>
         </div>
     </form>
     <!-- Checkboxradio -->
     <h3 class="demoHeaders">是否有括号</h3>
     <form style="margin-top: 1em;">
         <div class="radioset">
-            <input type="radio" id="hasParentheses" name="hasParentheses"><label for="hasParentheses">有</label>
-            <input type="radio" id="nob" name="hasParentheses" checked="checked"><label for="nob">无</label>
+            <input type="radio" id="hasParentheses" name="hasParentheses" value="true"><label
+                for="hasParentheses">有</label>
+            <input type="radio" id="nob" name="hasParentheses" checked="checked" value="false"><label
+                for="nob">无</label>
         </div>
     </form>
     <!-- Checkboxradio -->
     <h3 class="demoHeaders">是否有负数</h3>
     <form style="margin-top: 1em;">
         <div class="radioset">
-            <input type="radio" id="hasNegative" name="hasNegative"><label for="hasNegative">有</label>
-            <input type="radio" id="non" name="hasNegative" checked="checked"><label for="non">无</label>
+            <input type="radio" id="hasNegative" name="hasNegative" value="true"><label for="hasNegative">有</label>
+            <input type="radio" id="non" name="hasNegative" checked="checked" value="false"><label for="non">无</label>
         </div>
     </form>
     <!-- Checkboxradio -->
     <h3 class="demoHeaders">是否有乘除法</h3>
     <form style="margin-top: 1em;">
         <div class="radioset">
-            <input type="radio" id="hasMultipleAndDivide" name="hasMultipleAndDivide"><label
+            <input type="radio" id="hasMultipleAndDivide" name="hasMultipleAndDivide" value="true"><label
                 for="hasMultipleAndDivide">有</label>
-            <input type="radio" id="nod" name="hasMultipleAndDivide" checked="checked"><label for="nod">无</label>
+            <input type="radio" id="nod" name="hasMultipleAndDivide" checked="checked" value="false"><label
+                for="nod">无</label>
         </div>
     </form>
     <h3 class="demoHeaders"></h3>
@@ -91,6 +94,8 @@
     $(".radioset").buttonset();
 
     function getResult() {
+        alert($("input[name=hasFraction]:checked").val());
+        alert($("input[name=hasNegative]:checked").val());
         $("#result").show();
         $("#mainConfig").hide();
         $.ajax({
