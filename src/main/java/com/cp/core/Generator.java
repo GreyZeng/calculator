@@ -4,11 +4,9 @@ import com.cp.models.BinaryTree;
 import com.cp.models.Config;
 import com.cp.models.Expression;
 import com.google.common.base.Joiner;
+import org.springframework.util.CollectionUtils;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.cp.models.BinaryTree.generateExpression;
@@ -24,7 +22,18 @@ import static org.apache.commons.lang3.StringUtils.SPACE;
  */
 public class Generator {
 
+    public static String formatExpression(Set<Expression> expressions) {
+        if (CollectionUtils.isEmpty(expressions)) {
+            return null;
+        } else {
+            StringBuilder sbuilder = new StringBuilder();
+            for (Expression expression : expressions) {
+                sbuilder.append(expression.toString()).append("\n");
+            }
 
+            return sbuilder.toString();
+        }
+    }
     public static Set<Expression> generate(Config config) {
 
         System.out.println(config);
