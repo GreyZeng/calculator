@@ -94,8 +94,6 @@
     $(".radioset").buttonset();
 
     function getResult() {
-        alert($("input[name=hasFraction]:checked").val());
-        alert($("input[name=hasNegative]:checked").val());
         $("#result").show();
         $("#mainConfig").hide();
         $.ajax({
