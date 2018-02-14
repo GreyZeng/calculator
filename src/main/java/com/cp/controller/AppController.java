@@ -18,6 +18,7 @@ import static com.google.common.base.Objects.equal;
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @Controller
@@ -85,5 +86,10 @@ public class AppController {
         result.put("result", formatExpression(expressions));
         result.put("retcode", 1);
         return result;
+    }
+
+    @RequestMapping(value = "/locale", method = GET)
+    public String getLocalePage() {
+        return "my-locale";
     }
 }
