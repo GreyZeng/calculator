@@ -15,4 +15,8 @@ public interface Constants {
     String SINGLE_QUOTE = "'";
     String LEFT_PARENTHESES = "(";
     String RIGHT_PARENTHESES = ")";
+
+    int SUCCESS = 1;
+    String RET_CODE = "retcode";
+    String RESULT = "result";
 }

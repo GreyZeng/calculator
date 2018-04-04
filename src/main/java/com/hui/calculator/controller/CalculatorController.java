@@ -14,6 +14,9 @@ import java.util.Set;
 import static com.google.common.base.Objects.equal;
 import static com.hui.calculator.core.Generator.formatExpression;
 import static com.hui.calculator.core.Generator.generate;
+import static com.hui.calculator.models.Constants.RESULT;
+import static com.hui.calculator.models.Constants.RET_CODE;
+import static com.hui.calculator.models.Constants.SUCCESS;
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
@@ -83,8 +86,8 @@ public class CalculatorController {
         Set<Expression> expressions = generate(config);
         ModelMap result = new ModelMap();
 
-        result.put("result", formatExpression(expressions));
-        result.put("retcode", 1);
+        result.put(RESULT, formatExpression(expressions));
+        result.put(RET_CODE, SUCCESS);
         return result;
     }
 }
