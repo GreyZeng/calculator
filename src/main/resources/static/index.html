@@ -13,86 +13,86 @@
 
 </head>
 <body>
-<h1>Calculator</h1>
 
+<div class="container">
+    <form action="/getExpressions" method="post">
+        <div class="form-group col-6">
+            <label for="numberOfExpression">表达式个数</label>
+            <input type="number" class="form-control" id="numberOfExpression" name="numberOfExpression" min="3">
+        </div>
+        <div class="form-group col-6">
+            <label for="range">题目数值</label>
+            <input type="number" class="form-control" id="range" name="range" min="3">
+        </div>
+        <div class="form-group col-6">
+            <label for="maxNumberOfOperation">最大运算符数</label>
+            <input type="number" class="form-control" id="maxNumberOfOperation" name="maxNumberOfOperation" max="3"
+                   min="1">
+        </div>
 
-<form action="/getExpressions" method="post">
-    <div class="form-group">
-        <label for="numberOfExpression">表达式个数</label>
-        <input type="number" class="form-control" id="numberOfExpression" name="numberOfExpression" min="3">
-    </div>
-    <div class="form-group">
-        <label for="range">题目数值</label>
-        <input type="number" class="form-control" id="range" name="range" min="3">
-    </div>
-    <div class="form-group">
-        <label for="maxNumberOfOperation">最大运算符数</label>
-        <input type="number" class="form-control" id="maxNumberOfOperation" name="maxNumberOfOperation" max="3" min="1">
-    </div>
-
-    <fieldset class="form-group">
-        <legend>是否有分数</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasFraction" value="true" checked>
-                有
-            </label>
-        </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasFraction" value="false">
-                无
-            </label>
-        </div>
-    </fieldset>
-    <fieldset class="form-group">
-        <legend>是否有括号</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasParentheses" value="true" checked>
-                有
-            </label>
-        </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasParentheses" value="false">
-                无
-            </label>
-        </div>
-    </fieldset>
-    <fieldset class="form-group">
-        <legend>是否有负数</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasNegative" value="true" checked>
-                有
-            </label>
-        </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasNegative" value="false">
-                无
-            </label>
-        </div>
-    </fieldset>
-    <fieldset class="form-group">
-        <legend>是否有乘除法</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasMultipleAndDivide" value="true" checked>
-                有
-            </label>
-        </div>
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="hasMultipleAndDivide" value="false">
-                无
-            </label>
-        </div>
-    </fieldset>
-    <button type="submit" class="btn btn-primary">提交</button>
-</form>
-
+        <fieldset class="form-group col-6">
+            <legend>是否有分数</legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasFraction" value="true" checked>
+                    有
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasFraction" value="false">
+                    无
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="form-group col-6">
+            <legend>是否有括号</legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasParentheses" value="true" checked>
+                    有
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasParentheses" value="false">
+                    无
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="form-group col-6">
+            <legend>是否有负数</legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasNegative" value="true" checked>
+                    有
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasNegative" value="false">
+                    无
+                </label>
+            </div>
+        </fieldset>
+        <fieldset class="form-group col-6">
+            <legend>是否有乘除法</legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasMultipleAndDivide" value="true" checked>
+                    有
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="hasMultipleAndDivide" value="false">
+                    无
+                </label>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </form>
+</div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
