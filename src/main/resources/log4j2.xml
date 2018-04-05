@@ -11,7 +11,6 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <!-- Rolling File Appender -->
         <RollingFile name="FileAppender" fileName="logs/calculator.log"
                      filePattern="logs/calculator-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout>
@@ -23,23 +22,6 @@
             </Policies>
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>
-
-        <!-- SMTP Appender
-        <SMTP name="MailAppender"
-              subject="Log4j2 Demo [PROD]"
-              to="youremail@example.com"
-              from="log4j2-demo-alerts@example.com"
-              smtpHost="yourSMTPHost"
-              smtpPort="587"
-              smtpUsername="yourSMTPUsername"
-              smtpPassword="yourSMTPPassword"
-              bufferSize="1">
-            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout>
-                <Pattern>${LOG_PATTERN}</Pattern>
-            </PatternLayout>
-        </SMTP>
-         -->
     </Appenders>
 
     <Loggers>
