@@ -60,7 +60,7 @@ public class Config {
         } else {
             Gson gson = new Gson();
             Map<String, String> map = gson.fromJson(config, Map.class);
-            // TODO handler exception
+            // TODO handler exceptions
             return Config.create().hasNegative(parseBoolean(map.get("hasNegative")))
                     .hasParentheses(parseBoolean(map.get("hasParentheses")))
                     .hasMultipleAndDivide(parseBoolean(map.get("hasMultipleAndDivide")))
