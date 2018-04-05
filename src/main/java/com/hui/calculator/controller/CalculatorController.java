@@ -2,6 +2,8 @@ package com.hui.calculator.controller;
 
 import com.hui.calculator.models.Config;
 import com.hui.calculator.models.Expression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
  */
 @Controller
 public class CalculatorController {
+    private static final Logger logger = LogManager.getLogger(CalculatorController.class);
     @RequestMapping(value = "/getExpressions")
     @ResponseBody
     public ModelMap getExpressions(HttpServletRequest request, HttpServletResponse response) {
@@ -83,11 +86,14 @@ public class CalculatorController {
                 config.hasMultipleAndDivide(hasMultipleAndDivide);
             }
         }
+
+        logger.debug("Config is {}",config);
         Set<Expression> expressions = generate(config);
         ModelMap result = new ModelMap();
 
         result.put(RESULT, formatExpression(expressions));
         result.put(RET_CODE, SUCCESS);
+        logger.debug("result is {}",result);
         return result;
     }
 }
