@@ -5,6 +5,8 @@ import com.google.common.base.Joiner;
 import com.hui.calculator.models.BinaryTree;
 import com.hui.calculator.models.Config;
 import com.hui.calculator.models.Expression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
@@ -12,7 +14,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-
 
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
@@ -26,7 +27,7 @@ import static org.apache.commons.lang3.StringUtils.SPACE;
  * @date 2017/9/23
  */
 public class Generator {
-
+    private static final Logger logger = LogManager.getLogger(Generator.class);
     public static String formatExpression(Set<Expression> expressions) {
         if (CollectionUtils.isEmpty(expressions)) {
             return null;
@@ -41,8 +42,7 @@ public class Generator {
     }
     public static Set<Expression> generate(Config config) {
 
-        System.out.println(config);
-        System.out.println("Start generate expression...\n");
+        logger.debug("start generate expressions, config is {}",config);
         int numberOfExpression = config.getNumberOfExpression();
         Set<Expression> set = newHashSet();
         boolean isHasFraction = config.isHasFraction();
