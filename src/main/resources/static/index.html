@@ -5,6 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p>Hello world</p>
+<form action="/getExpressions" method="post">
+    表达式个数: <input type="number" name="numberOfExpression" min="3"/><br/>
+    题目数值: <input type="number" name="range" min="3"/><br/>
+    最大运算符数: <input type="number" name="maxNumberOfOperation" max="3" min="1"/><br/>
+    是否有分数: <input type="radio" name="hasFraction" value="true"/>有<input type="radio" name="hasFraction" value="false"
+                                                                        checked/>无<br/>
+    是否有括号: <input type="radio" name="hasParentheses" value="true"/>有<input type="radio" name="hasParentheses"
+                                                                           value="false" checked/>无<br/>
+    是否有负数: <input type="radio" name="hasNegative" value="true"/>有<input type="radio" name="hasNegative" value="false"
+                                                                        checked/>无<br/>
+    是否有乘除法: <input type="radio" name="hasMultipleAndDivide" value="true"/>有<input type="radio"
+                                                                                  name="hasMultipleAndDivide"
+                                                                                  value="false" checked/>无<br/>
+    <input type="submit"/>
+</form>
 </body>
 </html>
