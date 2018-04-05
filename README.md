@@ -110,3 +110,4 @@ String retrieveDefaultTemplate()
 ## 参考文献
 - [How to use Log4j 2 with Spring Boot](https://www.callicoder.com/spring-boot-log4j-2-example/)
 - [Guide to Spring Boot REST API Error Handling](https://www.toptal.com/java/spring-boot-rest-api-error-handling)
+- [Spring Boot中Web应用的统一异常处理](http://blog.didispace.com/springbootexception/)
