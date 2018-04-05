@@ -34,7 +34,7 @@ public class Generator {
         } else {
             StringBuilder sbuilder = new StringBuilder();
             for (Expression expression : expressions) {
-                sbuilder.append(expression.toString()).append("\n");
+                sbuilder.append(expression.toString()).append("  ");
             }
 
             return sbuilder.toString();
