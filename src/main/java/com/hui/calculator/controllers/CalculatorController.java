@@ -1,6 +1,5 @@
 package com.hui.calculator.controllers;
 
-import com.hui.calculator.exceptions.MyException;
 import com.hui.calculator.models.Config;
 import com.hui.calculator.models.Expression;
 import org.apache.logging.log4j.LogManager;
@@ -28,12 +27,6 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 @Controller
 public class CalculatorController {
     private static final Logger logger = LogManager.getLogger(CalculatorController.class);
-
-
-    @RequestMapping("/exception")
-    public String testException() throws MyException {
-        throw new MyException("测试异常");
-    }
 
     @RequestMapping(value = "/getExpressions")
     @ResponseBody
