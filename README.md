@@ -4,6 +4,7 @@
 - 增加多语言处理
     - 英语
     - 简体中文
+- 结果页面优化
 
 ## update 2018-04-04
 
@@ -117,3 +118,6 @@ String retrieveDefaultTemplate()
 - [How to use Log4j 2 with Spring Boot](https://www.callicoder.com/spring-boot-log4j-2-example/)
 - [Guide to Spring Boot REST API Error Handling](https://www.toptal.com/java/spring-boot-rest-api-error-handling)
 - [Spring Boot中Web应用的统一异常处理](http://blog.didispace.com/springbootexception/)
+- [A Guide To Spring Redirects](http://www.baeldung.com/spring-redirect-and-forward)
+- [Spring MVC and Thymeleaf: how to access data from templates](https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html)
+- [A quick guide to Internationalization in Spring Boot](https://phraseapp.com/blog/posts/spring-boot-internationalization/)
