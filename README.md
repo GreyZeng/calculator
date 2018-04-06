@@ -1,4 +1,10 @@
 [题目要求](http://www.cnblogs.com/jiel/p/4810756.html)
+
+## update 2018-04-06
+- 增加多语言处理
+    - 英语
+    - 简体中文
+
 ## update 2018-04-04
 
 - 新增dev分支，用于平时开发，待测试稳定后merge到master分支上，目前服务器上运行的是master分支的内容

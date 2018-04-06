@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,14 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 @Controller
 public class CalculatorController {
     private static final Logger logger = LogManager.getLogger(CalculatorController.class);
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String root() {
+        return "index";
+    }
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
+        return "index";
+    }
     @RequestMapping(value = "/getExpressions")
     @ResponseBody
     public ModelMap getExpressions(HttpServletRequest request, HttpServletResponse response) {
