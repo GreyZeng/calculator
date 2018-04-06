@@ -28,11 +28,8 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 @Controller
 public class CalculatorController {
     private static final Logger logger = LogManager.getLogger(CalculatorController.class);
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String root() {
-        return "index";
-    }
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+
+    @RequestMapping(value = {"", "/", "/index"})
     public String index() {
         return "index";
     }
