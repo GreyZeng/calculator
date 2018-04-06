@@ -20,10 +20,12 @@ import static com.hui.calculator.core.Generator.generate;
 @Controller
 public class CalculatorController {
     private static final Logger logger = LogManager.getLogger(CalculatorController.class);
+
     @RequestMapping(value = "/result")
     public String result() {
         return "result";
     }
+
     @RequestMapping(value = {"", "/", "/index"})
     public String index() {
         return "index";
@@ -32,11 +34,12 @@ public class CalculatorController {
 
     @PostMapping("/getExpressions")
     public ModelAndView getExpressions(@ModelAttribute Config config) {
-        logger.debug("Config is {}",config);
+        logger.debug("Config is {}", config);
         Set<Expression> expressions = generate(config);
-        ModelAndView modelAndView = new ModelAndView("result");
-        modelAndView.addObject("data",expressions);
-        modelAndView.addObject("answer",config.getAnswer());
-        return modelAndView;
+        return new ModelAndView("result")
+                .addObject("data", expressions)
+                .addObject("answer", config.getAnswer())
+                .addObject("enough", expressions.size() == config.getNumberOfExpression() ? true : false)
+                .addObject("number",expressions.size());
     }
 }

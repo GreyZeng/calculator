@@ -68,7 +68,7 @@ public class Generator {
                 expression = Joiner.on(SPACE).join(exp);
             }
             if (hasDuplicate(set, expression)) {
-                i--;
+                // i--;
                 continue;
             } else {
                 set.add(Expression.create(expression));
