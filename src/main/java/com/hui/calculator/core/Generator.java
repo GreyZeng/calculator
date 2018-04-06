@@ -1,6 +1,7 @@
 package com.hui.calculator.core;
 
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Sets;
 import com.hui.calculator.models.BinaryTree;
 import com.hui.calculator.models.Config;
@@ -12,15 +13,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.hui.calculator.models.BinaryTree.generateExpression;
 import static com.hui.calculator.models.Constants.*;
+import static org.apache.commons.lang3.StringUtils.SPACE;
 
 /**
  * @author zenghui
@@ -29,20 +28,48 @@ import static com.hui.calculator.models.Constants.*;
 public class Generator {
     private static final Logger logger = LogManager.getLogger(Generator.class);
 
+
     public static Set<Expression> generate(Config config) {
 
         logger.debug("start generate expressions, config is {}", config);
         int numberOfExpression = config.getNumberOfExpression();
         Set<Expression> set = Sets.newConcurrentHashSet();
-        ExecutorService executor = Executors.newCachedThreadPool();
-        CountDownLatch countDownLatch = new CountDownLatch(numberOfExpression);
-        BossRunnable boss = new BossRunnable(countDownLatch);
         for (int i = 0; i < numberOfExpression; i++) {
-            executor.execute(new GenerateTask(set, config, countDownLatch));
-        }
+            int randomNumberOfOperation = ThreadLocalRandom.current().nextInt(1, config.getMaxNumberOfOperation() + 1);
+            boolean isHasFraction = config.isHasFraction();
+            int markFraction = 0;
+            if (isHasFraction) {
+                // isHasFraction == true 说明至少有一个分数，标识一下分数所在的位置
+                markFraction = ThreadLocalRandom.current().nextInt(0, randomNumberOfOperation + 1) * 2;
+            }
+            int numberOfOpand = randomNumberOfOperation + 1;
+            String[] exp = new String[randomNumberOfOperation + numberOfOpand];
+            for (int j = 0; j < randomNumberOfOperation + numberOfOpand; j++) {
+                if (j % 2 == 0) {
+                    if (j == markFraction && isHasFraction) {
+                        exp[j] = generateOprand(true, config.getRange());
+                    } else {
+                        exp[j] = generateOprand(randomFlag(isHasFraction), config.getRange());
+                    }
+                    if (j > 0 && equal(exp[j - 1], DIVIDE) && equal(exp[j], ZERO)) {
+                        // could not be ÷ 0 , re generator operator from + - x
+                        exp[j - 1] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()), DIVIDE);
+                    }
+                } else {
+                    exp[j] = pickAnOperation(generateAvailableOperators(config.isHasMultipleAndDivide()));
+                }
+            }
+            String expression;
+            if (config.isHasParentheses()) {
+                expression = Joiner.on(SPACE).join(markParentheses(exp));
+            } else {
+                expression = Joiner.on(SPACE).join(exp);
+            }
 
-        executor.execute(boss);
-        executor.shutdown();
+            if (!hasDuplicate(set, expression)) {
+                set.add(Expression.create(expression));
+            }
+        }
 
         if (config.getAnswer()) {
             Answer.answer(set);
