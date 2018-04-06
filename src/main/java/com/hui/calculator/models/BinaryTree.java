@@ -1,5 +1,6 @@
 package com.hui.calculator.models;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
@@ -19,11 +20,11 @@ public class BinaryTree {
 
     private Node root;
 
-    private static List<String> output = newArrayList();
 
     public static BinaryTree create(String exp) {
-        output.clear();
-        return construct(infixToSuffix(exp));
+        List<String> out = Lists.newCopyOnWriteArrayList();
+        infixToSuffix(out,exp);
+        return construct(out);
     }
 
     public static String generateExpression(Node root) {
@@ -46,11 +47,10 @@ public class BinaryTree {
     public Node getRoot() {
         return this.root;
     }
-
-    public static List<String> infixToSuffix(String exp) {
+    public static void infixToSuffix(List<String> output, String exp) {
         Stack<String> theStack = new Stack<>();
         if (isEmpty(exp)) {
-            return newArrayList();
+            output =  Lists.newCopyOnWriteArrayList();
         }
         String[] infix = exp.split(SPACE);
         int length = infix.length;
@@ -59,17 +59,17 @@ public class BinaryTree {
             switch (item) {
                 case PLUS:
                 case MINUS:
-                    gotOper(item, 1, theStack);
+                    gotOper(output,item, 1, theStack);
                     break;
                 case MULTIPLY:
                 case DIVIDE:
-                    gotOper(item, 2, theStack);
+                    gotOper(output,item, 2, theStack);
                     break;
                 case LEFT_PARENTHESES:
                     theStack.push(item);
                     break;
                 case RIGHT_PARENTHESES:
-                    gotParen(theStack);
+                    gotParen(output,theStack);
                     break;
                 default:
                     output.add(item);
@@ -79,14 +79,14 @@ public class BinaryTree {
         while (!theStack.isEmpty()) {
             output.add(theStack.pop());
         }
-        return output;
     }
+
 
     private BinaryTree(Node root) {
         this.root = root;
     }
 
-    private static void gotOper(String opThis, int prec1, Stack<String> theStack) {
+    private static void gotOper(List<String> output, String opThis, int prec1, Stack<String> theStack) {
         while (!theStack.isEmpty()) {
             String opTop = theStack.pop();
             if (equal(opTop, LEFT_PARENTHESES)) {
@@ -110,7 +110,7 @@ public class BinaryTree {
         theStack.push(opThis);
     }
 
-    private static void gotParen(Stack<String> theStack) {
+    private static void gotParen(List<String> output, Stack<String> theStack) {
         while (!theStack.isEmpty()) {
             String item = theStack.pop();
             if (equal(item, LEFT_PARENTHESES)) {

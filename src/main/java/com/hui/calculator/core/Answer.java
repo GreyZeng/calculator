@@ -1,5 +1,6 @@
 package com.hui.calculator.core;
 
+import com.google.common.collect.Lists;
 import com.hui.calculator.models.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.fraction.Fraction;
@@ -42,7 +43,8 @@ public class Answer {
         Fraction a;
         Fraction b;
         Fraction result = new Fraction(0, 1);
-        List<String> suffix = infixToSuffix(expression.getExpression());
+        List<String> suffix = Lists.newCopyOnWriteArrayList();
+        infixToSuffix(suffix, expression.getExpression());
         if (null == suffix) {
             return;
         }
