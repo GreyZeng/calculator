@@ -1,7 +1,6 @@
 package com.hui.calculator.core;
 
 
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
 import com.hui.calculator.models.BinaryTree;
 import com.hui.calculator.models.Config;
@@ -9,15 +8,19 @@ import com.hui.calculator.models.Expression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.google.common.base.Objects.equal;
 import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newConcurrentHashSet;
 import static com.hui.calculator.models.BinaryTree.generateExpression;
 import static com.hui.calculator.models.Constants.*;
-import static java.util.Collections.unmodifiableSet;
 
 /**
  * @author zenghui
