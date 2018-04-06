@@ -98,6 +98,21 @@
                 </label>
             </div>
         </fieldset>
+        <fieldset class="form-group col-6">
+            <legend th:text="#{withAnswer}"></legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="answer" value="true" checked>
+                    <span th:text="#{true}"></span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="answer" value="false">
+                    <span th:text="#{false}"></span>
+                </label>
+            </div>
+        </fieldset>
         <button type="submit" class="btn btn-primary" th:text="#{submit}"></button>
     </form>
 </div>

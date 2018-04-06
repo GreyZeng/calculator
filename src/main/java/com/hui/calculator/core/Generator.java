@@ -7,7 +7,6 @@ import com.hui.calculator.models.Config;
 import com.hui.calculator.models.Expression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,18 +27,7 @@ import static org.apache.commons.lang3.StringUtils.SPACE;
  */
 public class Generator {
     private static final Logger logger = LogManager.getLogger(Generator.class);
-    public static String formatExpression(Set<Expression> expressions) {
-        if (CollectionUtils.isEmpty(expressions)) {
-            return null;
-        } else {
-            StringBuilder sbuilder = new StringBuilder();
-            for (Expression expression : expressions) {
-                sbuilder.append(expression.toString()).append("  ");
-            }
 
-            return sbuilder.toString();
-        }
-    }
     public static Set<Expression> generate(Config config) {
 
         logger.debug("start generate expressions, config is {}",config);

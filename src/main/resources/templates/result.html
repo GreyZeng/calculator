@@ -18,7 +18,8 @@
     </tr>
     </thead>
     <tr th:each="item : ${data}">
-        <td th:text="${item}"></td>
+        <td th:text="${item}" th:unless="${answer == false}"></td>
+        <td th:text="${item.expression}" th:unless="${answer == true}"></td>
     </tr>
 </table>
 
