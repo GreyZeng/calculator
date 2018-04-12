@@ -1,5 +1,6 @@
 package com.hui.calculator.models;
 
+import com.google.common.base.Objects;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 
@@ -189,5 +190,25 @@ public class Config {
                 "has negative?(-hn):" + hasNegative + "\n" +
                 "with answer?(-as):" + answer + "\n" +
                 "------------------------------------------------------------------------------- ";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Config config = (Config) o;
+        return numberOfExpression == config.numberOfExpression &&
+                range == config.range &&
+                hasFraction == config.hasFraction &&
+                hasMultipleAndDivide == config.hasMultipleAndDivide &&
+                hasParentheses == config.hasParentheses &&
+                hasNegative == config.hasNegative &&
+                answer == config.answer &&
+                maxNumberOfOperation == config.maxNumberOfOperation;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(numberOfExpression, range, hasFraction, hasMultipleAndDivide, hasParentheses, hasNegative, answer, maxNumberOfOperation);
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Stack;
 
 import static com.google.common.base.Objects.equal;
-import static com.google.common.collect.Lists.newArrayList;
 import static com.hui.calculator.core.Generator.generateAvailableOperators;
 import static com.hui.calculator.models.Constants.*;
 import static org.apache.commons.lang3.StringUtils.*;

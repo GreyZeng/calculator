@@ -16,7 +16,8 @@ public interface Constants {
     String LEFT_PARENTHESES = "(";
     String RIGHT_PARENTHESES = ")";
 
-    int SUCCESS = 1;
+    String SUCCESS = "1";
+    String ERROR = "-1";
     String RET_CODE = "retcode";
     String RESULT = "result";
 }

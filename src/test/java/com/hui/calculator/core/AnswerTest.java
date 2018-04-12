@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class AnswerTest {
 
     @Test
-    public void answer() {
-        String exp = "3 +  5 × 3  -  3 ÷ 4 ";
+    public void answer() throws Exception {
+        String exp = "3 +  5 × 3  +  2 ÷ 4 ";
         Expression expression = Expression.create(exp);
         Answer.answer(expression);
         Assert.assertEquals(17.25f, expression.getValue(), 2);

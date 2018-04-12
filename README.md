@@ -1,5 +1,78 @@
 [题目要求](http://www.cnblogs.com/jiel/p/4810756.html)
 
+## update 2018-04-12
+
+- 增加测试功能(Beta)
+
+输入四则运算的规则和表达式，测试程序可以自动判断表达式是否符合规则
+
+输入输出示例：
+
+输入：
+```json
+{
+  "config": {
+    "numberOfExpression": 30,
+    "range": 30,
+    "hasFraction": false,
+    "hasMultipleAndDivide": true,
+    "hasParentheses": true
+  },
+  "expressions": {
+    "3 × ( 3 + 3 )": "18",
+    "( 3 + 3 )": "6"
+  }
+}
+```
+输入参数说明：
+在config中：
+- numberOfExpression: 表达式的个数
+- range: 表达式中操作数的范围
+- hasFraction: 是否包含分数（true:是，false:否）
+- hasMultipleAndDivide: 是否包含乘除法（true:是，false:否）
+- hasParentheses: 是否包含括号（true:是，false:否）
+
+在expressions中
+- key 表示 表达式
+- value 表示表达式的值
+
+输出：
+```json
+{
+  "config": {
+    "numberOfExpression": 30,
+    "range": 30,
+    "hasFraction": false,
+    "hasMultipleAndDivide": true,
+    "hasParentheses": true,
+    "hasNegative": false,
+    "answer": false,
+    "maxNumberOfOperation": 3
+  },
+  "results": [
+    {
+      "3 × ( 3 + 3 )": {
+        "true": "符合要求的表达式"
+      }
+    },
+    {
+      "( 3 - 1 )": {
+        "false": "题目中的乘除法不符合要求"
+      }
+    }
+  ],
+  "enough": false
+}
+
+```
+输出参数说明：
+
+- config：和输入的config一样
+- results：里面对每个表达式正确与否进行了说明，key为表达式，value中的key为正确与否，value中说明了表达式不满足哪个条件
+- enough: 表示是否生成了足够多满足条件的表达式
+
+[RESTful接口地址(试用版)](http://116.196.74.137:9000/checking)，接口参数名：answer，参数值：见输入示例
+
 ## update 2018-04-06
 - 增加多语言处理
     - 英语
@@ -14,6 +87,9 @@
     - 更新到Spring boot 2.0.0
     - 增加日志处理
     - 增加异常处理
+    
+    
+
 
 
 ## 开发环境

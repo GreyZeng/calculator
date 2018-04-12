@@ -37,7 +37,7 @@ public class Answer {
         }
     }
 
-    public static void answer(Expression expression) {
+    public static double answer(Expression expression) {
         Stack<Fraction> s = new Stack();
 
         Fraction a;
@@ -46,13 +46,13 @@ public class Answer {
         List<String> suffix = Lists.newCopyOnWriteArrayList();
         infixToSuffix(suffix, expression.getExpression());
         if (null == suffix) {
-            return;
+            return 0.d;
         }
         boolean isNumber;
         for (String item : suffix) {
             try {
                 isNumber = true;
-                result = getFraction(item);
+                result = parseToFraction(item);
             } catch (Exception e) {
                 isNumber = false;
             }
@@ -88,9 +88,10 @@ public class Answer {
         }
         expression.setFraction(s.peek());
         expression.setValue(s.peek().doubleValue());
+        return expression.getValue();
     }
 
-    private static Fraction getFraction(String item) {
+    public static Fraction parseToFraction(String item) {
         int result;
         if (item.indexOf(VIRGULE) > 0) {
             int attach = 0;
