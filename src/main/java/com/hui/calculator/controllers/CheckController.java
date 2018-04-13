@@ -26,24 +26,4 @@ public class CheckController {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        String a = "{\n" +
-                "  \"config\": {\n" +
-                "    \"numberOfExpression\": 30,\n" +
-                "    \"range\": 30,\n" +
-                "    \"hasFraction\": false,\n" +
-                "    \"hasMultipleAndDivide\": true,\n" +
-                "    \"hasParentheses\": true,\n" +
-                "    \"hasNegative\": false,\n" +
-                "    \"answer\": false,\n" +
-                "    \"maxNumberOfOperation\": 3\n" +
-                "  },\n" +
-                "  \"expressions\": {\n" +
-                "    \"3 × ( 3 + 3 )\": \"18\",\n" +
-                "    \"( 3 - 1 )\": \"2\"\n" +
-                "  }\n" +
-                "}\n";
-        System.out.println(getCheckedInfo(a));
-    }
-
 }
